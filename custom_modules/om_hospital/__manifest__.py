@@ -11,7 +11,11 @@
     'summary': 'Hospital management system',
     'description': """ Hospital management system """,
     'depends': [],
-    'data': [],
+    'data': [
+        'security/ir.model.access.csv',
+        'views/menu.xml',
+        'views/patient_views.xml',
+    ],
     'demo': [],
     'installable': True,
     'application': True,
