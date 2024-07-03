@@ -28,7 +28,24 @@
                     </group>
 
                 </sheet>
+                <!-- chatter-->
+                <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids" options="{'post_refresh': 'recipients'}"/>
+                    </div>
             </form>
+        </field>
+    </record>
+    <record id="view_hospital_patient_search" model="ir.ui.view">
+        <field name="name">hospital.patient.search</field>
+        <field name="model">hospital.patient</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="age"/>
+                <field name="gender"/>
+            </search>
         </field>
     </record>
     <record id="action_hospital_patient" model="ir.actions.act_window">
