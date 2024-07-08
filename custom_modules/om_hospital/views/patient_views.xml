@@ -28,6 +28,7 @@
                         <group>
                             <field name="ref" string="Reference"/>
                             <field name="gender"/>
+                            <field name="active" invinsible="1"/>
                         </group>
                     </group>
 
@@ -54,9 +55,12 @@
                 <filter name="filter_female" string="Female" domain="[('gender', '=', 'female')]"/>
                 <separator/>
                 <filter name="filter_kids" string="Kids" domain="[('age', '&lt;=', 5)]"/>
+                <separator/>
+                <filter name="filter_archive" string="Archive" domain="[('active', '=', False)]"/>
                 <group expand="0" string="Group By">
                     <filter name="group_by_gender" string="Gender" context="{'group_by':'gender'}"/>
                 </group>
+
             </search>
         </field>
     </record>
