@@ -15,6 +15,9 @@
         'security/ir.model.access.csv',
         'views/menu.xml',
         'views/patient_views.xml',
+        'views/female_patient_views.xml',
+        'views/male_patient_views.xml',
+
     ],
     'demo': [],
     'installable': True,
