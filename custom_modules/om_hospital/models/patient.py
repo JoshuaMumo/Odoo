@@ -6,5 +6,6 @@ class HospitalPatient(models.Model):
     _inherit = ['mail.thread','mail.activity.mixin']
 
     name = fields.Char(string="Name")
-    age = fields.Integer(string="age")
-    gender = fields.Selection([('male','Male'),('female','Female')], string="gender")
+    ref = fields.Char(string="Reference")
+    age = fields.Integer(string="Age")
+    gender = fields.Selection([('male','Male'),('female','Female')], string="Gender")
