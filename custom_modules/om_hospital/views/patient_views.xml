@@ -8,7 +8,6 @@
             <tree>
                 <field name="ref" string="Reference"/>
                 <field name="name" string="Patient Name"/>
-                <field name="age"/>
                 <field name="gender"/>
             </tree>
         </field>
@@ -23,7 +22,9 @@
                     <group>
                         <group>
                             <field name="name"/>
+                            <field name="date_of_birth"/>
                             <field name="age"/>
+<!--                            <field name="appointment_id"/>-->
                         </group>
                         <group>
                             <field name="ref" string="Reference"/>
@@ -53,14 +54,13 @@
                 <field name="ref" string="Reference"/>
                 <filter name="filter_male" string="Male" domain="[('gender', '=', 'male')]"/>
                 <filter name="filter_female" string="Female" domain="[('gender', '=', 'female')]"/>
-                <separator/>
-                <filter name="filter_kids" string="Kids" domain="[('age', '&lt;=', 5)]"/>
-                <separator/>
                 <filter name="filter_archive" string="Archive" domain="[('active', '=', False)]"/>
                 <group expand="0" string="Group By">
                     <filter name="group_by_gender" string="Gender" context="{'group_by':'gender'}"/>
                 </group>
-
+                <searchpanel>
+                        <field name="gender" string="Gender" icon="fa-bars" enable_counters="1" select="multi" color=" f58220"/>
+                    </searchpanel>
             </search>
         </field>
     </record>
@@ -82,6 +82,6 @@
               name="Patient"
               action="action_hospital_patient"
               parent="menu_patient_master"
-              sequence="30"/>
+              sequence="10"/>
 
 </odoo>
