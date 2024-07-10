@@ -11,8 +11,25 @@ class HospitalAppointment(models.Model):
     gender = fields.Selection([('male','Male'),('female','Female')], string="Gender", related='parent_id.gender')
     appointment_time = fields.Date(string='Appointment Time', default=fields.Datetime.now)
     booking_date = fields.Date(string='Booking Date', default=fields.Date.context_today)
-    ref = fields.Char(string="Reference")
+    ref = fields.Char(string="Reference", related='parent_id.ref')
     days_to_booking_date = fields.Integer(string='No of Days ', compute='_compute_days')
+    prescription = fields.Html(string="Prescription")
+    pharmacy = fields.Html(string="Pharmacy")
+    priority = fields.Selection([
+        ('1','Very Low'),
+        ('2','Low'),
+        ('3','Normal'),
+        ('4','High'),
+        ('5','Very High')], string='Priority'
+    )
+    state = fields.Selection([
+        ('draft','draft'),
+        ('in_consultation','In Consultation'),
+        ('done','Done'),
+        ('cancel','Cancel')], string='State' ,default='draft',required=True
+    )
+
+
 
     @api.depends('booking_date', 'appointment_time')
     def _compute_days(self):

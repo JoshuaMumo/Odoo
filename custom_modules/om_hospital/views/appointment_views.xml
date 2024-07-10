@@ -5,7 +5,7 @@
         <field name="name">hospital.appointment.tree</field>
         <field name="model">hospital.appointment</field>
         <field name="arch" type="xml">
-            <tree>
+            <tree create="0">
                 <field name="parent_id"/>
                 <field name='appointment_time'/>
                 <field name="booking_date"/>
@@ -18,12 +18,20 @@
         <field name="model">hospital.appointment</field>
         <field name="arch" type="xml">
             <form>
+                <header>
+                    <field name="state" widget="statusbar" nolabel="1" statusbar_visible="draft,in_consultation,done"/>
+                </header>
                 <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="priority" widget="priority" class="mr-3"/>
+                        </h1>
+                    </div>
                     <group>
                         <group>
                             <field name="parent_id"/>
-                            <field name="ref"/>
                             <field name="gender"/>
+                            <field name="ref"/>
                             <field name="booking_date"/>
                             <field name="days_to_booking_date"/>
                         </group>
@@ -31,7 +39,20 @@
                             <field name='appointment_time'/>
                         </group>
                     </group>
+                    <notebook>
+                        <page name="prescription" string="Prescription">
+                            <group>
+                                <field name="prescription" placeholder="Enter your prescription"/>
 
+                            </group>
+                        </page>
+                        <page name="pharmacy" string="Pharmacy">
+                            <group>
+                                <field name="ref"/>
+
+                            </group>
+                        </page>
+                    </notebook>
                 </sheet>
                 <!-- chatter-->
                 <div class="oe_chatter">
