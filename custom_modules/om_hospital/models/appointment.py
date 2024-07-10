@@ -14,7 +14,7 @@ class HospitalAppointment(models.Model):
     ref = fields.Char(string="Reference")
     days_to_booking_date = fields.Integer(string='No of Days ', compute='_compute_days')
 
-
+    @api.depends('booking_date', 'appointment_time')
     def _compute_days(self):
         for rec in self:
             today = date.today()
