@@ -43,3 +43,16 @@ class HospitalAppointment(models.Model):
     @api.onchange('patient_id')
     def onchange_patient_id(self):
         self.ref=self.patient_id.ref
+
+    def action_test(self):
+        return self.write({"state": "in_consultation"})
+
+    def object_button(self):
+        print("Button Clicked")
+        return {
+            'effect': {
+                'fadeout': 'slow',
+                'message': 'Click successful',
+                'type': 'rainbow_man',
+            }
+        }
