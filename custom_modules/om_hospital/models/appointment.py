@@ -1,6 +1,6 @@
 from odoo import api, fields, models
 from datetime import date
-
+from odoo.exceptions import UserError
 class HospitalAppointment(models.Model):
     _name = "hospital.appointment"
     _description = "Hospital Appointment"
@@ -45,7 +45,16 @@ class HospitalAppointment(models.Model):
         self.ref=self.patient_id.ref
 
     def action_test(self):
-        return self.write({"state": "in_consultation"})
+        for rec in self:
+            if rec.state == 'draft':
+                rec.state = 'in_consultation'
+            else:
+                rec.state == 'in_consultation'
+                rec.state = 'done'
+            # elif rec.state == 'done':
+            #      raise UserError('The record is already in Done')
+            # else:
+            #     raise UserError('Invalid state transition')
 
     def object_button(self):
         print("Button Clicked")

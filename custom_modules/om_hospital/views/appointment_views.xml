@@ -1,16 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--decoration-success &#45;&#45; green-->
+<!--decoration-danger &#45;&#45; red-->
+<!--decoration-warning &#45;&#45; orange-->
+<!--decoration-muted &#45;&#45; no color-->
+
 <odoo>
     <!--    dashboard view -->
     <record id="view_hospital_appointment_tree" model="ir.ui.view">
         <field name="name">hospital.appointment.tree</field>
         <field name="model">hospital.appointment</field>
         <field name="arch" type="xml">
-            <tree create="0">
+            <tree create="0" decoration-success="state == 'done'" decoration-danger="state == 'cancel'"
+                  decoration-warning="state == 'in_consultation'" decoration-info="state == 'draft'">
                 <field name="parent_id"/>
-                <field name='appointment_time'/>
-                <field name="booking_date"/>
+                <field name='appointment_time' optional="show"/>
+                <field name="booking_date" optional="hide"/>
+                <field name="activity_ids" widget="list_activity"/>
+
                 <field name="state" widget="badge" decoration-success="state == 'done'"
-                       decoration-info="state in ('draft','in_consultation')" decoration-danger="state == 'cancel'"/>
+                       decoration-muted="state == 'in_consultation'"
+                       decoration-info="state in 'draft'" decoration-danger="state == 'cancel'"/>
             </tree>
         </field>
     </record>
@@ -22,8 +31,12 @@
             <form>
                 <header>
                     <field name="state" widget="statusbar" nolabel="1" statusbar_visible="draft,in_consultation,done"/>
-                    <button name="object_button" string="Object Button" type="object" class="oe_highlight" confirm="Are you sure to execute python code" help="it confirms that you have clicked the button"/>
-                    <button name="%(action_hospital_appointment)d" string="Action Button" type="action" class="oe_highlight" confirm="Are you sure you want to open appointment window?" help="you will be redirected to appointment records"/>
+                    <button name="object_button" string="Object Button" type="object" class="oe_highlight"
+                            confirm="Are you sure to execute python code"
+                            help="it confirms that you have clicked the button"/>
+                    <button name="%(action_hospital_appointment)d" string="Action Button" type="action"
+                            class="oe_highlight" confirm="Are you sure you want to open appointment window?"
+                            help="you will be redirected to appointment records"/>
                 </header>
                 <sheet>
                     <div class="oe_title">
@@ -41,8 +54,8 @@
                         </group>
                         <group>
                             <field name='appointment_time'/>
-                            <button name="action_test" string="Next" type="object" class="oe_highlight" invinsible="state not in ('draft')"/>
-                            <button name="action_test2" string="Next" type="object" class="oe_highlight" invinsible="state not in ('in_consultation')"/>
+                            <button name="action_test" string="Next" type="object" class="oe_highlight"
+                                    invisible="state == 'done'"/>
                         </group>
                     </group>
                     <notebook>

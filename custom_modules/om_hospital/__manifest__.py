@@ -7,7 +7,7 @@
     'version': '1.0.0',
     'category': 'Hospital',
     'author': 'Joshua Mumo',
-    'sequence': -200,
+    'sequence': 10,
     'summary': 'Hospital management system',
     'description': """ Hospital management system """,
     'depends': ['mail'],
