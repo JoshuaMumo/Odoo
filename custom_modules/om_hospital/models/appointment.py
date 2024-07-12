@@ -46,17 +46,31 @@ class HospitalAppointment(models.Model):
     def onchange_patient_id(self):
         self.ref=self.patient_id.ref
 
-    def action_test(self):
-        for rec in self:
-            if rec.state == 'draft':
-                rec.state = 'in_consultation'
-            else:
-                rec.state == 'in_consultation'
-                rec.state = 'done'
+    # def action_test(self):
+    #     for rec in self:
+    #         if rec.state == 'draft':
+    #             rec.state = 'in_consultation'
+    #         else:
+    #             rec.state == 'in_consultation'
+    #             rec.state = 'done'
             # elif rec.state == 'done':
             #      raise UserError('The record is already in Done')
             # else:
             #     raise UserError('Invalid state transition')
+
+
+    def action_in_consultation(self):
+       for rec in self:
+           rec.state = 'in_consultation'
+    def action_done(self):
+       for rec in self:
+           rec.state = 'done'
+    def action_cancel(self):
+        for rec in self:
+            rec.state = 'cancel'
+    def action_draft(self):
+        for rec in self:
+            rec.state = 'draft'
 
     def object_button(self):
         print("Button Clicked")
