@@ -30,6 +30,7 @@
         <field name="model">hospital.appointment</field>
         <field name="arch" type="xml">
             <form>
+<!--                buttons appearing at the top pf the form-->
                 <header>
                     <field name="state" widget="statusbar" nolabel="1" statusbar_visible="draft,in_consultation,done"/>
                     <button name="object_button" string="Object Button" type="object" class="oe_highlight"
@@ -66,9 +67,10 @@
                         </group>
                     </group>
                     <notebook>
+<!--                        adding a html field-->
                         <page name="prescription" string="Prescription">
                             <group>
-                                <field name="prescription" placeholder="Enter your prescription" options="{'collaborative': true}"/>
+                                <field name="prescription" placeholder="Enter your prescription" options="{'collaborative': true, 'resizable':true}"/>
 
                             </group>
                         </page>
