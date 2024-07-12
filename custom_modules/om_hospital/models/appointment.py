@@ -37,7 +37,8 @@ class HospitalAppointment(models.Model):
         for rec in self:
             today = date.today()
             if rec.booking_date:
-                rec.days_to_booking_date = rec.booking_date.day - today.day
+                days_difference = (rec.booking_date - today).days
+                rec.days_to_booking_date = days_difference
             else:
                 rec.days_to_booking_date = 0
 
