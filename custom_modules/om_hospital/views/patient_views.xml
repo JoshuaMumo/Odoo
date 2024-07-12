@@ -8,7 +8,7 @@
             <tree create="0" >
                 <field name="ref" string="Reference"/>
                 <field name="name" string="Patient Name"/>
-                <field name="gender"/>
+                <field name="gender" optional="show"/>
             </tree>
         </field>
     </record>

@@ -8,7 +8,7 @@ class HospitalPatient(models.Model):
     _inherit = ['mail.thread', 'mail.activity.mixin']
 
     name = fields.Char(string="Name", tracking=True)
-    ref = fields.Char(string="Reference")
+    ref = fields.Char(string="Reference", readonly=True, copy=False, default='New')
     date_of_birth = fields.Date(string='Date Of Birth')
     age = fields.Integer(string="Age", compute='_compute_age', tracking=True)
     gender = fields.Selection([('male', 'Male'), ('female', 'Female')], string="Gender", tracking=True)
@@ -22,3 +22,9 @@ class HospitalPatient(models.Model):
                rec.age = today.year - rec.date_of_birth.year
             else:
                rec.age = 0
+
+    @api.model
+    def create(self, vals):
+        if vals.get('ref', 'New') == 'New':
+            vals['ref'] = self.env['ir.sequence'].next_by_code('hospital.patient') or 'New'
+        return super(HospitalPatient, self).create(vals)

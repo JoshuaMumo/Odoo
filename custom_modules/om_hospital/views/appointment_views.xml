@@ -103,7 +103,7 @@
             </p>
         </field>
     </record>
-
+<!--appointments menu item-->
     <menuitem id="menu_appointment"
               name="Appointments"
               action="action_hospital_appointment"
